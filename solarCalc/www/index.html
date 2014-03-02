@@ -3,83 +3,110 @@
 <head>
 <meta charset="utf-8">
 <title>Solar Saving</title>
-
 <link href="jquery.mobile-1.4.0/jquery.mobile-1.4.0.css" rel="stylesheet" type="text/css">
 <link href="jquery.mobile-1.4.0/jquery.mobile.structure-1.4.0.css" rel="stylesheet" type="text/css">
 <link href="jquery.mobile-1.4.0/jquery.mobile.icons-1.4.0.css" rel="stylesheet" type="text/css">
 <link href="jquery.mobile-1.4.0/jquery.mobile.inline-svg-1.4.0.css" rel="stylesheet" type="text/css">
-
 <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script>
 <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
+<style type="text/css">
+.ui-field-contain {
+	border-radius: 15px;
+	border: solid 2px #d1d1d1;
+	padding: 7px;
+	margin-top: 5px;
+}
+.ui-input-text input {
+	background-color: #ffcb99;
+}
+.ui-content {
+	background-color: white;
+}
+.ui-header .ui-title {
+	margin: 0 10%;
+	font-size: 1.3em;
+	padding: 0.3em 0;
+}
+.lab{
+	color:#fbc877;
+	text-align:center;
+	font-weight:bold;
+	padding:0px;
+	margin:0px;
+		}
+</style>
 </head>
 
 <body>
-
 <div data-role="page" id="Index" >
   <div data-role="header">
-    <h1>Solar Saving Estimator</h1>
+    <h1 style="color:#efb351">Solar Saving Estimator</h1>
   </div>
   <div data-role="content">
-  
-  <fieldset style="width:65%; margin: 1em auto; ">
-
-  system kw size: <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
-
-   
-  <fieldset style="width:65%; margin: 1em auto; ">
-
-  
-feed in tariff: <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
-
-<fieldset style="width:65%; margin: 1em auto; ">
-
- 
-cost of power: <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
- 
- <fieldset style="width:65%; margin: 1em auto; ">
-
- 
-quartley kw usage:  <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
-<fieldset style="width:65%; margin: 1em auto; ">
-
-  
-day consume % <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
- 
- <fieldset style="width:65%; margin: 1em auto; ">
-
-  daily sun hours 
-  <input type="text"  style="background-color:#FC3" ><br>
- 
- </fieldset>
- 
- <fieldset style="width:65%; margin: 1em auto; ">
-
-  
-efficency factor % <input type="text"  style="background-color:#FC3; text-align: right;"  ><br>
- 
-
-<p class="main">
-<font size="2">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, 
-'just remember that all the people in this world haven't had the advantages that you've had.'</font></p>
-
-
-  <button>pay off yours</button>
-  <button>annual ROI</button>
-  <button>Yearly Savings</button>
-
-
+    <div data-role="fieldcontain">
+      <label for="skws">System kw size:</label>
+      <input type="text"  name="skws" id="skws" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="fit">Feed in tariff:</label>
+      <input type="text" name="fit" id="fit" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="cop">Cost of power:</label>
+      <input type="text" name="cop" id="cop" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="qku">Quartley kw usage:</label>
+      <input type="text" name="qku" id="qku" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="dc">Day consume %:</label>
+      <input type="text" name="dc" id="dc" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="dsh">Daily sun hours:</label>
+      <input type="text" name="dsh" id="dsh" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="ef">Effeciency factor %:</label>
+      <input type="text" name="ef" id="ef" value=""  />
+    </div>
+    <div data-role="fieldcontain" style="border: 0px;">
+      <center>
+        <label for="ef" style="font-weight:bold">Cost of system</label>
+      </center>
+      <input type="text" name="ef" id="ef" value="$"  />
+    </div>
+    <div>
+      <p style="color:#fbc877; text-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
+      <p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:23px;">www.solarconsultants.com.au</p>
+    </div>
+    <table>
+      <tr>
+        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
+        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
+        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
+      </tr>
+      
+      <tr>
+      <td>
+      <p class="lab">
+      pay off yrs.
+      </p>
+      </td>
+      <td>
+        <p class="lab">
+      annual ROI
+      </p>
+      </td>
+      <td>
+        <p class="lab">
+      yearly saving
+      </p>
+      </td>
+      </tr>
+    </table>
   </div>
-
 </div>
 </body>
 </html>
