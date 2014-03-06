@@ -9,6 +9,63 @@
 <link href="jquery.mobile-1.4.0/jquery.mobile.inline-svg-1.4.0.css" rel="stylesheet" type="text/css">
 <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script>
 <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
+<script>
+
+function myCalculatorFunction()
+{
+var out_Number_of_years_to_pay_off=0;
+var out_Annual_ROI=0;
+var out_Annual_Savings=0;
+var inp_sys_size=document.getElementById("skws").value;
+var inp_feedintariff=document.getElementById("fit").value;
+var inp_Cost_of_power=document.getElementById("cop").value;
+var inp_Quartleykw_usage=document.getElementById("qku").value;
+var inp_Day_consume=document.getElementById("dc").value;
+var inp_Daily_sun_hours=document.getElementById("dsh").value;
+var inp_Effeciencyfactor=document.getElementById("ef2").value;
+var inp_CostofSys=document.getElementById("ef").value;
+
+
+var pro_Average_daily_household_energy_usage=(inp_Quartleykw_usage<=0?0:inp_Quartleykw_usage/91.25);
+var pro_Avg_daily_system_Production=inp_sys_size*inp_Daily_sun_hours;
+var pro_Daily_self_consumption=pro_Avg_daily_system_Production*inp_Day_consume;
+var pro_Dailysolarexport=pro_Avg_daily_system_Production-pro_Daily_self_consumption;
+var pro_Daily_electricity_bought_from_grid=pro_Average_daily_household_energy_usage-pro_Daily_self_consumption;
+var pro_Daily_savings_from_selfconsumption=pro_Daily_self_consumption* inp_Cost_of_power;
+var pro_Daily_savings_from_solar_export=pro_Dailysolarexport*inp_feedintariff;
+var pro_Total_daily_savings=pro_Daily_savings_from_solar_export+ pro_Daily_savings_from_selfconsumption;
+
+out_Annual_Savings=pro_Total_daily_savings*365;
+
+var pro_Quarterly_electricity_bought_from_grid=pro_Daily_electricity_bought_from_grid*91.25;
+var pro_Quarterly_selfconsumption=pro_Daily_self_consumption*91.25;
+var pro_Quarterly_solar_export=pro_Dailysolarexport*91.25;
+var pro_Quarterly_electricity_bought_from_grid=pro_Daily_electricity_bought_from_grid*91.25;
+var pro_Quarterly_savings_from_self_consumption=pro_Daily_savings_from_selfconsumption*91.25;
+var pro_Quarterly_savings_from_solar_export= pro_Daily_savings_from_solar_export*91.25;
+
+
+var pro_Total_quartley_savings=(out_Annual_Savings<=0?0:out_Annual_Savings/4);
+
+
+
+out_Number_of_years_to_pay_off=(inp_CostofSys==0?0:inp_CostofSys/out_Annual_Savings);
+out_Annual_ROI=(inp_CostofSys==0?0:inp_CostofSys/out_Number_of_years_to_pay_off);
+out_Annual_ROI=(out_Annual_ROI==0?0:out_Annual_ROI/inp_CostofSys);
+
+
+
+//alert(out_Number_of_years_to_pay_off+"  "+out_Annual_ROI+"  "+out_Annual_Savings)
+
+ document.getElementById("textinput1").value=out_Number_of_years_to_pay_off;
+document.getElementById("textinput2").value=out_Annual_ROI;
+document.getElementById("textinput3").value=out_Annual_Savings;
+}
+
+
+</script>
+
+
 <style type="text/css">
 .ui-field-contain {
 	border-radius: 15px;
@@ -68,49 +125,53 @@
     <h1 style="color:#efb351">Solar Saving Estimator</h1>
   </div>
   <div data-role="content">
-    <div data-role="fieldcontain">
+   <div data-role="fieldcontain">
       <label for="skws">System kw size:</label>
-      <input type="text"  name="skws" id="skws" value=""  />
+      <input type="number"  name="skws" id="skws" value="0" onkeypress="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="fit">Feed in tariff:</label>
-      <input type="text" name="fit" id="fit" value=""  />
+      <input type="number" name="fit" id="fit" value="0" onkeypress="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="cop">Cost of power:</label>
-      <input type="text" name="cop" id="cop" value=""  />
+      <input type="number" name="cop" id="cop" value="0"  onkeypress="myCalculatorFunction()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="qku">Quartley kw usage:</label>
-      <input type="text" name="qku" id="qku" value=""  />
+      <input type="number" name="qku" id="qku" value="0" onkeypress="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="dc">Day consume %:</label>
-      <input type="text" name="dc" id="dc" value=""  />
+      <input type="number" name="dc" id="dc" value="0"  onkeypress="myCalculatorFunction()"/>
     </div>
     <div data-role="fieldcontain">
+      
       <label for="dsh">Daily sun hours:</label>
-      <input type="text" name="dsh" id="dsh" value=""  />
+      <input type="number" name="dsh" id="dsh" value="0" onkeypress="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
-      <label for="ef">Effeciency factor %:</label>
-      <input type="text" name="ef" id="ef" value=""  />
+      <label for="ef2">Effeciency factor %:</label>
+       <input type="number" name="ef2" id="ef2" value="0" onkeypress="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain" style="border: 0px;">
       <center>
-        <label for="ef" style="font-weight:bold">Cost of system</label>
+        <label for="ef" style="font-weight:bold">
+          
+        Cost of system</label>
+        <input type="text" name="ef" id="ef" value="$"  onkeypress="myCalculatorFunction()"/>
       </center>
-      <input type="text" name="ef" id="ef" value="$"  />
+     
     </div>
     <div>
-      <p style="color:#fbc877; text-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
-      <p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p>
+      <p style="color:#fbc877; number-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
+      <p style="color:#ffcb99; number-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p>
     </div>
     <table>
       <tr>
-        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
-        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
-        <td><input type="text" name="textinput" id="textinput" value=""  /></td>
+        <td><input type="number" name="textinput1" id="textinput1" value="0"  /></td>
+        <td><input type="number" name="textinput1" id="textinput2" value="0"  /></td>
+        <td><input type="number" name="textinput2" id="textinput3" value="0"  /></td>
       </tr>
       <tr>
         <td><p class="lab"> pay off yrs. </p></td>
