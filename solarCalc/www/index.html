@@ -34,6 +34,32 @@
 	padding:0px;
 	margin:0px;
 		}
+		.nav-glyphish-example .ui-btn {
+	padding-top: 40px !important;
+}
+.nav-glyphish-example .ui-btn:after {
+	width: 30px!important;
+	height: 30px!important;
+	margin-left: -15px !important;
+	box-shadow: none!important;
+	-moz-box-shadow: none!important;
+	-webkit-box-shadow: none!important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+#calc:after {
+	background: url(img/setting.png) 50% 50% no-repeat;
+	background-size: 26px 30px;
+}
+#about:after {
+	background: url(img/about.png) 50% 50% no-repeat;
+	background-size: 26px 30px;
+}
+.ui-page-theme-a .ui-btn.ui-btn-active{
+	background-color:#fbc877;
+	border-color:#fbc877;
+	}
+		
 </style>
 </head>
 
@@ -79,7 +105,7 @@
     </div>
     <div>
       <p style="color:#fbc877; text-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
-      <p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:23px;">www.solarconsultants.com.au</p>
+      <p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p>
     </div>
     <table>
       <tr>
@@ -106,7 +132,35 @@
       </td>
       </tr>
     </table>
+    	<div data-role="footer" class="nav-glyphish-example" data-position="fixed">
+    <div data-role="navbar" class="nav-glyphish-example">
+    <ul>
+        <li><a href="#Index" id="calc" data-icon="custom"  class="ui-btn-active">Calculate</a></li>
+        <li><a href="#About" id="about" data-icon="custom">About</a></li>
+        
+    </ul>
+    </div>
+</div>
+
   </div>
 </div>
+<div data-role="page" id="About">
+   <div data-role="header">
+    <h1 style="color:#efb351">Solar Saving Estimator</h1>
+  </div>
+  <div data-role="content">About Us</div>
+  <div data-role="footer" class="nav-glyphish-example" data-position="fixed">
+    <div data-role="navbar" class="nav-glyphish-example">
+    <ul>
+        <li><a href="#Index" id="calc" data-icon="custom"  >Calculate</a></li>
+        <li><a href="#About" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+        
+    </ul>
+    </div>
+</div>
+</div>
+
+
+
 </body>
 </html>
