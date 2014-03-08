@@ -51,15 +51,18 @@ var pro_Total_quartley_savings=(out_Annual_Savings<=0?0:out_Annual_Savings/4);
 
 out_Number_of_years_to_pay_off=(inp_CostofSys==0?0:inp_CostofSys/out_Annual_Savings);
 out_Annual_ROI=(inp_CostofSys==0?0:inp_CostofSys/out_Number_of_years_to_pay_off);
-out_Annual_ROI=(out_Annual_ROI==0?0:out_Annual_ROI/inp_CostofSys);
+out_Annual_ROI=(out_Annual_ROI==0?0:(out_Annual_ROI*100)/inp_CostofSys);
 
+out_Number_of_years_to_pay_off=out_Number_of_years_to_pay_off.toFixed(2);
+out_Annual_ROI=out_Annual_ROI.toFixed(2);
+out_Annual_Savings=out_Annual_Savings.toFixed(2);
 
 
 //alert(out_Number_of_years_to_pay_off+"  "+out_Annual_ROI+"  "+out_Annual_Savings)
 
- document.getElementById("textinput1").value=out_Number_of_years_to_pay_off;
-document.getElementById("textinput2").value=out_Annual_ROI;
-document.getElementById("textinput3").value=out_Annual_Savings;
+ document.getElementById("textinput1").value=(out_Number_of_years_to_pay_off==""?0.00:out_Number_of_years_to_pay_off);
+document.getElementById("textinput2").value=out_Annual_ROI+"%";
+document.getElementById("textinput3").value="$"+out_Annual_Savings;
 }
 
 
@@ -112,10 +115,18 @@ document.getElementById("textinput3").value=out_Annual_Savings;
 	background: url(img/about.png) 50% 50% no-repeat;
 	background-size: 26px 30px;
 }
+
+#info:after {
+	background: url(img/info.png) 50% 50% no-repeat;
+	background-size: 26px 30px;
+}
 .ui-page-theme-a .ui-btn.ui-btn-active {
 	background-color: #fbc877;
 	border-color: #fbc877;
 }
+.boldT{
+	font-weight:bolder;
+	}
 </style>
 </head>
 
@@ -127,51 +138,52 @@ document.getElementById("textinput3").value=out_Annual_Savings;
   <div data-role="content">
    <div data-role="fieldcontain">
       <label for="skws">System kw size:</label>
-      <input type="number"  name="skws" id="skws" value="0" onkeypress="myCalculatorFunction()" />
+      <input type="number"  name="skws" id="skws" value="0"  onKeyUp="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="fit">Feed in tariff:</label>
-      <input type="number" name="fit" id="fit" value="0" onkeypress="myCalculatorFunction()" />
+      <input type="number" name="fit" id="fit" value="0"  onKeyUp="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="cop">Cost of power:</label>
-      <input type="number" name="cop" id="cop" value="0"  onkeypress="myCalculatorFunction()"/>
+      <input type="number" name="cop" id="cop" value="0"  onKeyUp="myCalculatorFunction()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="qku">Quartley kw usage:</label>
-      <input type="number" name="qku" id="qku" value="0" onkeypress="myCalculatorFunction()" />
+      <input type="number" name="qku" id="qku" value="0"  onKeyUp="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="dc">Day consume %:</label>
-      <input type="number" name="dc" id="dc" value="0"  onkeypress="myCalculatorFunction()"/>
+      <input type="number" name="dc" id="dc" value="0"   onKeyUp="myCalculatorFunction()"/>
     </div>
     <div data-role="fieldcontain">
       
       <label for="dsh">Daily sun hours:</label>
-      <input type="number" name="dsh" id="dsh" value="0" onkeypress="myCalculatorFunction()" />
+      <input type="number" name="dsh" id="dsh" value="0" onKeyUp="myCalculatorFunction()" />
     </div>
     <div data-role="fieldcontain">
       <label for="ef2">Effeciency factor %:</label>
-       <input type="number" name="ef2" id="ef2" value="0" onkeypress="myCalculatorFunction()" />
+       <input type="number" name="ef2" id="ef2" value="0"  onKeyUp="myCalculatorFunction()"/>
     </div>
     <div data-role="fieldcontain" style="border: 0px;">
       <center>
         <label for="ef" style="font-weight:bold">
           
         Cost of system</label>
-        <input type="text" name="ef" id="ef" value="$"  onkeypress="myCalculatorFunction()"/>
+        <input type="number" name="ef" id="ef" value=""  onKeyUp="myCalculatorFunction()"/>
       </center>
      
     </div>
     <div>
-      <p style="color:#fbc877; number-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
-      <p style="color:#ffcb99; number-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p>
+      <p style="color:#fbc877; text-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
+      <a href="www.solarconsultants.com.au" style="text-decoration:none"><p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p></a>
     </div>
-    <table>
+    <div>
+    <table width="100%">
       <tr>
-        <td><input type="number" name="textinput1" id="textinput1" value="0"  /></td>
-        <td><input type="number" name="textinput1" id="textinput2" value="0"  /></td>
-        <td><input type="number" name="textinput2" id="textinput3" value="0"  /></td>
+        <td><input type="number" name="textinput1" id="textinput1" value="0.00" readonly /></td>
+        <td><input type="text" name="textinput1" id="textinput2" value="0.00%"  readonly/></td>
+        <td><input type="text" name="textinput2" id="textinput3" value="$0.00"  readonly/></td>
       </tr>
       <tr>
         <td><p class="lab"> pay off yrs. </p></td>
@@ -179,11 +191,13 @@ document.getElementById("textinput3").value=out_Annual_Savings;
         <td><p class="lab"> yearly saving </p></td>
       </tr>
     </table>
+</div>
     <div data-role="footer" class="nav-glyphish-example" data-position="fixed">
       <div data-role="navbar" class="nav-glyphish-example">
         <ul>
           <li><a href="#Index" id="calc" data-icon="custom"  class="ui-btn-active">Calculate</a></li>
           <li><a href="#About" id="about" data-icon="custom">About</a></li>
+            <li><a href="#Info" id="info" data-icon="custom">Info</a></li>
         </ul>
       </div>
     </div>
@@ -195,7 +209,7 @@ document.getElementById("textinput3").value=out_Annual_Savings;
   </div>
   <div data-role="content">
     <p style="color:#fbc877; text-align:center; font-weight:bolder;font-size:20px">About Us</p>
-    <p style="color:#fbc877; text-align:justify;">
+    <p style="color:#fbc877; text-align:justify; font-size:18px">
   We are now one of Queensland's largest and most trusted "Debt Free" electrical contracting solar companies with over 90 000 panel installs completed from north of Townsville to south of Brisbane.
 
 Our very experienced two founding Directors ("both trade qualified") have a vast wealth of quality experience ranging from over 40 years of combined management not only in the electrical field, also some of Australia's largest companies. (They both work hands on in our office on a daily basis managing our 100+ strong team!)
@@ -208,9 +222,67 @@ Their attention to detail in only choosing some of the highest output imported q
       <ul>
         <li><a href="#Index" id="calc" data-icon="custom"  >Calculate</a></li>
         <li><a href="#About" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+   <li><a href="#Info" id="info" data-icon="custom">Info</a></li>
       </ul>
     </div>
   </div>
+   
+  
 </div>
+
+<div data-role="page" id="Info">
+    <div data-role="header">
+    <h1 style="color:#efb351">Solar Saving Estimator</h1>
+  </div>
+    <div data-role="content" style="text-align:justify;font-size:18px;font-weight:500;color:#fbc877;">
+    <p>
+   <span class="boldT"> System Size:</span>  Choose the kilowatt size of your solar system between 1 and 100.
+    </p>
+<p>  <span class="boldT">
+Feed In:  </span>The amount the government or retailer will pay you for excess power.
+</p>
+<p>  <span class="boldT">
+Cost of Power:  </span>This is the cost in electricity your retailer will charge you per KW hour. (eg, 0.29c) Look on your power bill to confirm this price.
+</p>
+<p>  <span class="boldT">
+Quarter kw usage:  </span>Amount of power you use per quarter. (If you are not sure of this factor  just divide your quarterly  power bill by you cost of power (eg , bill ÷ 0.29c )
+</p>
+<p>  <span class="boldT">
+Day consume %: </span> This is an estimate of your average weekly day time usage pattern.
+</p>
+<p>
+Example - Home a lot through the daytime using power may indicate around  (70% to 90%) with little being exported to the grid "or" away from home a lot during the daytime may indicate around (40% to 60%) with a lot being exported.  (Remember  to factor in fridges, pool pumps, hot water etc,  during the day) also you will consume a large amount over the weekend and holidays. Just average it out.
+</p>
+<p>  <span class="boldT">
+Daily Sun Hours: </span>The national average of usable daylight sun hours that will produce power. Set this around 4.5 to 5.5 depending on where you live in QLD
+</p>
+<p>  <span class="boldT">
+Efficiency factor:  </span>There are many electrical % losses from Inverters, solar panel s, cables to orientation and pitch of panels and shading.  Set to around (90%) for the perfect roof or lower for roofs that are not at the perfect orientations.
+</p>
+<p>  <span class="boldT">
+System cost:  </span>What you are paying for the system.
+</p>
+<p>  <span class="boldT">
+Pay off yrs:  </span>Based on your input, the app will estimate how many years the system will take to cover costs
+</p>
+<p>  <span class="boldT">
+Annual ROI:  </span>Based on your input, the app will estimate your Return On Investment (ROI)
+</p>
+<p>  <span class="boldT">
+Yearly savings:  </span>Based on your input, the app will estimate the yearly savings made by your system.
+</p>
+</div>
+      
+      <div data-role="footer" class="nav-glyphish-example" data-position="fixed">
+    
+    <div data-role="navbar" class="nav-glyphish-example">
+      <ul>
+        <li><a href="#Index" id="calc" data-icon="custom"  >Calculate</a></li>
+        <li><a href="#About" id="about" data-icon="custom">About</a></li>
+   <li><a href="#Info" id="info" data-icon="custom" class="ui-btn-active">Info</a></li>
+      </ul>
+    </div>
+  </div>
+  </div>
 </body>
 </html>
