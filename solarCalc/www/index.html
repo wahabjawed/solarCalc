@@ -177,28 +177,28 @@ $('#ef').val("$"+inp_CostofSys);
   <div data-role="content">
    <div data-role="fieldcontain">
       <label for="skws">System kw size:</label>
-      <input type="text"  pattern="\d*" name="skws" id="skws" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text"  pattern="\d+(\.\d*)?" name="skws" id="skws" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="fit">Feed in tariff:</label>
-      <input type="text" pattern="\d*" name="fit" id="fit" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text" pattern="\d+(\.\d*)?" name="fit" id="fit" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="cop">Cost of power:</label>
-      <input type="text" pattern="\d*" name="cop" id="cop" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text" pattern="\d+(\.\d*)?" name="cop" id="cop" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="qku">Quartley kw usage:</label>
-      <input type="text" pattern="\d*" name="qku" id="qku" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text" pattern="\d+(\.\d*)?" name="qku" id="qku" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="dc">Day consume %:</label>
-      <input type="text" pattern="\d*" name="dc" id="dc" value=""   onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text" pattern="\d+(\.\d*)?" name="dc" id="dc" value=""   onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       
       <label for="dsh">Daily sun hours:</label>
-      <input type="text" pattern="\d*" name="dsh" id="dsh" value="" onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+      <input type="text" pattern="\d+(\.\d*)?" name="dsh" id="dsh" value="" onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="ef2">Effeciency factor %:</label>
@@ -209,7 +209,7 @@ $('#ef').val("$"+inp_CostofSys);
         <label for="ef" style="font-weight:bold">
           
         Cost of system</label>
-        <input type="text" pattern="\d*" name="ef" id="ef" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
+        <input type="text" pattern="\d+(\.\d*)?" name="ef" id="ef" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
       </center>
      
     </div>
