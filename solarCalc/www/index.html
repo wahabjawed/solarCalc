@@ -11,19 +11,31 @@
 <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
 <script>
 
+var out_Number_of_years_to_pay_off;
+var out_Annual_ROI;
+var out_Annual_Savings;
+var inp_sys_size;
+var inp_feedintariff;
+var inp_Cost_of_power;
+var inp_Quartleykw_usage;
+var inp_Day_consume;
+var inp_Daily_sun_hours;
+var inp_Effeciencyfactor;
+var inp_CostofSys;
 function myCalculatorFunction()
 {
-var out_Number_of_years_to_pay_off=0;
-var out_Annual_ROI=0;
-var out_Annual_Savings=0;
-var inp_sys_size=document.getElementById("skws").value;
-var inp_feedintariff=document.getElementById("fit").value;
-var inp_Cost_of_power=document.getElementById("cop").value;
-var inp_Quartleykw_usage=document.getElementById("qku").value;
-var inp_Day_consume=document.getElementById("dc").value;
-var inp_Daily_sun_hours=document.getElementById("dsh").value;
-var inp_Effeciencyfactor=document.getElementById("ef2").value;
-var inp_CostofSys=document.getElementById("ef").value;
+out_Number_of_years_to_pay_off=0;
+out_Annual_ROI=0;
+out_Annual_Savings=0;
+inp_sys_size= $('#skws').val().replace(/[a-zA-Z]+/g,'');
+inp_feedintariff=$('#fit').val().replace('$', '');
+inp_Cost_of_power=$('#cop').val().replace('$', '');
+inp_Quartleykw_usage=$('#qku').val().replace(/[a-zA-Z]+/g, '');
+inp_Day_consume=$('#dc').val().replace('%', '');
+inp_Daily_sun_hours=$('#dsh').val().replace(/[a-zA-Z]+/g, '');
+inp_Effeciencyfactor=$('#ef2').val().replace('%', '');
+inp_CostofSys=$('#ef').val().replace('$', '');
+
 
 
 var pro_Average_daily_household_energy_usage=(inp_Quartleykw_usage<=0?0:inp_Quartleykw_usage/91.25);
@@ -65,7 +77,34 @@ document.getElementById("textinput2").value=out_Annual_ROI+"%";
 document.getElementById("textinput3").value="$"+out_Annual_Savings;
 }
 
+function reFormat(){
 
+if(inp_sys_size!="" && ($('#skws').val().indexOf("kw"))==-1){
+$('#skws').val(inp_sys_size+" kw");
+}
+if(inp_feedintariff!="" && ($('#fit').val().indexOf("$"))==-1){
+$('#fit').val("$"+inp_feedintariff);
+}
+if(inp_Cost_of_power!="" && ($('#cop').val().indexOf("$"))==-1){
+$('#cop').val("$"+inp_Cost_of_power);
+}
+if(inp_Quartleykw_usage!="" && ($('#qku').val().indexOf("kw"))==-1){
+$('#qku').val(inp_Quartleykw_usage+" kw");
+}
+if(inp_Day_consume!="" && ($('#dc').val().indexOf("%"))==-1){
+$('#dc').val(inp_Day_consume+"%");
+}
+if(inp_Daily_sun_hours!="" && ($('#dsh').val().indexOf("hrs"))==-1){
+$('#dsh').val(inp_Daily_sun_hours+" hrs");
+}
+if(inp_Effeciencyfactor!="" && ($('#ef2').val().indexOf("%"))==-1){
+$('#ef2').val(inp_Effeciencyfactor+"%");
+}
+if(inp_CostofSys!="" && ($('#ef').val().indexOf("$"))==-1){
+$('#ef').val("$"+inp_CostofSys);
+}
+
+	}
 </script>
 
 
@@ -138,39 +177,39 @@ document.getElementById("textinput3").value="$"+out_Annual_Savings;
   <div data-role="content">
    <div data-role="fieldcontain">
       <label for="skws">System kw size:</label>
-      <input type="number"  name="skws" id="skws" value="0"  onKeyUp="myCalculatorFunction()" />
+      <input type="text"  pattern="\d*" name="skws" id="skws" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="fit">Feed in tariff:</label>
-      <input type="number" name="fit" id="fit" value="0"  onKeyUp="myCalculatorFunction()" />
+      <input type="text" pattern="\d*" name="fit" id="fit" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="cop">Cost of power:</label>
-      <input type="number" name="cop" id="cop" value="0"  onKeyUp="myCalculatorFunction()"/>
+      <input type="text" pattern="\d*" name="cop" id="cop" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="qku">Quartley kw usage:</label>
-      <input type="number" name="qku" id="qku" value="0"  onKeyUp="myCalculatorFunction()" />
+      <input type="text" pattern="\d*" name="qku" id="qku" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="dc">Day consume %:</label>
-      <input type="number" name="dc" id="dc" value="0"   onKeyUp="myCalculatorFunction()"/>
+      <input type="text" pattern="\d*" name="dc" id="dc" value=""   onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       
       <label for="dsh">Daily sun hours:</label>
-      <input type="number" name="dsh" id="dsh" value="0" onKeyUp="myCalculatorFunction()" />
+      <input type="text" pattern="\d*" name="dsh" id="dsh" value="" onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain">
       <label for="ef2">Effeciency factor %:</label>
-       <input type="number" name="ef2" id="ef2" value="0"  onKeyUp="myCalculatorFunction()"/>
+       <input type="text" pattern="\d*" name="ef2" id="ef2" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
     </div>
     <div data-role="fieldcontain" style="border: 0px;">
       <center>
         <label for="ef" style="font-weight:bold">
           
         Cost of system</label>
-        <input type="number" name="ef" id="ef" value=""  onKeyUp="myCalculatorFunction()"/>
+        <input type="text" pattern="\d*" name="ef" id="ef" value=""  onKeyUp="myCalculatorFunction()" onblur="reFormat()"/>
       </center>
      
     </div>
@@ -187,9 +226,9 @@ document.getElementById("textinput3").value="$"+out_Annual_Savings;
         <td><input type="text" name="textinput2" id="textinput3" value="$0.00"  readonly/></td>
       </tr>
       <tr>
-        <td><p class="lab"> Pay off yrs. </p></td>
-        <td><p class="lab"> Annual ROI </p></td>
-        <td><p class="lab"> Yearly saving </p></td>
+        <td><p class="lab"> pay off in years </p></td>
+        <td><p class="lab"> annual ROI </p></td>
+        <td><p class="lab"> yearly saving </p></td>
       </tr>
     </table>
 </div>
@@ -246,7 +285,7 @@ Feed In:  </span>The amount the government or retailer will pay you for excess p
 Cost of Power:  </span>This is the cost in electricity your retailer will charge you per KW hour. (eg, 0.29c) Look on your power bill to confirm this price.
 </p>
 <p>  <span class="boldT">
-Quarter kw usage:  </span>Amount of power you use per quarter. (If you are not sure of this factor  just divide your quarterly  power bill by you cost of power (eg , bill ÷ 0.29c )
+Quarter kw usage:  </span>Amount of power you use per quarter. (If you are not sure of this factor  just divide your quarterly  power bill by your cost of power (eg , bill ÷ 0.29c )
 </p>
 <p>  <span class="boldT">
 Day consume %: </span> This is an estimate of your average weekly day time usage pattern.
