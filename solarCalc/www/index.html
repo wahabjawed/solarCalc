@@ -28,14 +28,14 @@ var inp_CostofSys=document.getElementById("ef").value;
 
 var pro_Average_daily_household_energy_usage=(inp_Quartleykw_usage<=0?0:inp_Quartleykw_usage/91.25);
 var pro_Avg_daily_system_Production=inp_sys_size*inp_Daily_sun_hours;
-var pro_Daily_self_consumption=pro_Avg_daily_system_Production*inp_Day_consume;
+var pro_Daily_self_consumption=(pro_Avg_daily_system_Production*inp_Day_consume)/100;
 var pro_Dailysolarexport=pro_Avg_daily_system_Production-pro_Daily_self_consumption;
 var pro_Daily_electricity_bought_from_grid=pro_Average_daily_household_energy_usage-pro_Daily_self_consumption;
 var pro_Daily_savings_from_selfconsumption=pro_Daily_self_consumption* inp_Cost_of_power;
 var pro_Daily_savings_from_solar_export=pro_Dailysolarexport*inp_feedintariff;
 var pro_Total_daily_savings=pro_Daily_savings_from_solar_export+ pro_Daily_savings_from_selfconsumption;
 
-out_Annual_Savings=pro_Total_daily_savings*365;
+out_Annual_Savings=pro_Total_daily_savings*365*(inp_Effeciencyfactor/100);
 
 var pro_Quarterly_electricity_bought_from_grid=pro_Daily_electricity_bought_from_grid*91.25;
 var pro_Quarterly_selfconsumption=pro_Daily_self_consumption*91.25;
@@ -60,7 +60,7 @@ out_Annual_Savings=out_Annual_Savings.toFixed(2);
 
 //alert(out_Number_of_years_to_pay_off+"  "+out_Annual_ROI+"  "+out_Annual_Savings)
 
- document.getElementById("textinput1").value=(out_Number_of_years_to_pay_off==""?0.00:out_Number_of_years_to_pay_off);
+ document.getElementById("textinput1").value=(out_Number_of_years_to_pay_off==""?0.00:out_Number_of_years_to_pay_off)+" yrs";
 document.getElementById("textinput2").value=out_Annual_ROI+"%";
 document.getElementById("textinput3").value="$"+out_Annual_Savings;
 }
@@ -176,19 +176,20 @@ document.getElementById("textinput3").value="$"+out_Annual_Savings;
     </div>
     <div>
       <p style="color:#fbc877; text-align:justify;">All calculations are based on customer feedback and optimum conditions. For any queries or information on our systems and installation procedures, please visit our website:</p>
-      <a href="www.solarconsultants.com.au" style="text-decoration:none"><p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p></a>
+      <a href="http://www.solarconsultants.com.au" style="text-decoration:none"><p style="color:#ffcb99; text-align:center; font-weight:bold;font-size:18px;">www.solarconsultants.com.au</p></a>
+<p style="color:#fbc877; text-align:center; font-weight:bold;font-size:18px;">Ph 1300 977 426</p>
     </div>
     <div>
     <table width="100%">
       <tr>
-        <td><input type="number" name="textinput1" id="textinput1" value="0.00" readonly /></td>
+        <td><input type="text" name="textinput1" id="textinput1" value="0.00 yrs" readonly /></td>
         <td><input type="text" name="textinput1" id="textinput2" value="0.00%"  readonly/></td>
         <td><input type="text" name="textinput2" id="textinput3" value="$0.00"  readonly/></td>
       </tr>
       <tr>
-        <td><p class="lab"> pay off yrs. </p></td>
-        <td><p class="lab"> annual ROI </p></td>
-        <td><p class="lab"> yearly saving </p></td>
+        <td><p class="lab"> Pay off yrs. </p></td>
+        <td><p class="lab"> Annual ROI </p></td>
+        <td><p class="lab"> Yearly saving </p></td>
       </tr>
     </table>
 </div>
